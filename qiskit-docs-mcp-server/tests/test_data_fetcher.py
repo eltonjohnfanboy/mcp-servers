@@ -764,7 +764,7 @@ class TestMakeSnippet:
         'alpha' appears alone early and 'beta' alone in the middle, but all three
         query terms cluster together at the end (in a different order, so the exact
         phrase never matches). The snippet must center on that dense cluster — this
-        exercises the two-pointer narrowing in _densest_window_start.
+        exercises the two-pointer narrowing in _densest_window_center.
         """
         text = "alpha " + ("x " * 600) + "beta " + ("y " * 600) + "gamma beta alpha tail"
         snippet = _make_snippet(text, "alpha beta gamma", max_chars=80)

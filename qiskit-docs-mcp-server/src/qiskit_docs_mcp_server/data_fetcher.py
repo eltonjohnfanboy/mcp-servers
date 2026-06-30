@@ -212,7 +212,7 @@ _MIN_TERM_LEN = 2
 _ELLIPSIS = "…"  # single-character "..."
 
 
-def _densest_window_start(positions: list[int], width: int) -> int:
+def _densest_window_center(positions: list[int], width: int) -> int:
     """Return the center of the densest cluster of match positions.
 
     Given sorted character offsets where query terms occur, find the window of
@@ -300,7 +300,7 @@ def _make_snippet(text: str, query: str, max_chars: int = SNIPPET_MAX_CHARS) -> 
         positions = sorted(
             match.start() for term in terms for match in re.finditer(re.escape(term), haystack)
         )
-        anchor = _densest_window_start(positions, max_chars)
+        anchor = _densest_window_center(positions, max_chars)
 
     if anchor == -1:
         # No query term present (e.g. a semantic match) — use the body's head.
